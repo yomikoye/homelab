@@ -1,0 +1,25 @@
+services:
+  openwebui:
+    container_name: openwebui
+    image: ghcr.io/open-webui/open-webui:main
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - DEFAULT_MODELS=gpt-4.1
+      - ENABLE_WEB_SEARCH=True
+      - WEB_SEARCH_ENGINE=duckduckgo
+      - WEB_SEARCH_RESULT_COUNT=10
+    volumes:
+      - /mnt/shared/portainer/openwebui/data:/app/backend/data
+    networks:
+      - homelab-network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.openwebui.rule=Host(`chat.home`)"
+      - "traefik.http.routers.openwebui.tls=true"
+      - "traefik.http.services.openwebui.loadbalancer.server.port=8080"
+    restart: unless-stopped
+
+networks:
+  homelab-network:
+    name: homelab-network
+    external: true
