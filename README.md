@@ -20,6 +20,9 @@ A modular Docker-based homelab setup with organized service stacks for infrastru
 ### 🐳 **portainer** - Container Management
 - **Portainer**: Docker container management interface
 
+### 📊 **monitoring** - Health & Monitoring
+- **Beszel**: Infrastructure health monitoring and rollout service
+
 ## Service URLs
 
 | Service | Stack | URL | Purpose |
@@ -30,6 +33,7 @@ A modular Docker-based homelab setup with organized service stacks for infrastru
 | Nextcloud | nextcloud | `https://nextcloud.home` | Personal cloud |
 | Open WebUI | llm | `https://chat.home` | AI interface |
 | Portainer | portainer | `https://portainer.home` | Container management |
+| Beszel | monitoring | `https://health.koye.casa` | Health monitoring |
 
 ## Prerequisites
 
@@ -71,6 +75,10 @@ A modular Docker-based homelab setup with organized service stacks for infrastru
    
    # Container management
    cd portainer
+   docker-compose up -d
+   
+   # Monitoring services
+   cd monitoring
    docker-compose up -d
    ```
 
@@ -190,6 +198,7 @@ Important directories to backup by stack:
 - **nextcloud**: `/mnt/shared/portainer/nextcloud/`, `/mnt/shared/nextcloud-files/`
 - **llm**: `/mnt/shared/portainer/openwebui/`
 - **portainer**: `/mnt/shared/portainer/portainer/`
+- **monitoring**: `/mnt/shared/portainer/beszel/`
 
 ## Troubleshooting
 

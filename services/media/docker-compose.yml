@@ -4,7 +4,7 @@ services:
     image: jellyfin/jellyfin:latest
     environment:
       - TZ=Europe/Warsaw
-      - JELLYFIN_PublishedServerUrl=https://jellyfin.home
+      - JELLYFIN_PublishedServerUrl=https://jellyfin.koye.casa
     volumes:
       - /mnt/shared/portainer/jellyfin/config:/config
       - /mnt/shared/portainer/jellyfin/cache:/cache
@@ -16,7 +16,7 @@ services:
       - homelab-network
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.jellyfin.rule=Host(`jellyfin.home`)"
+      - "traefik.http.routers.jellyfin.rule=Host(`jellyfin.koye.casa`)"
       - "traefik.http.routers.jellyfin.tls=true"
       - "traefik.http.services.jellyfin.loadbalancer.server.port=8096"
     restart: unless-stopped

@@ -14,7 +14,7 @@ services:
       - homelab-network
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.openwebui.rule=Host(`chat.home`)"
+      - "traefik.http.routers.openwebui.rule=Host(`chat.koye.casa`)"
       - "traefik.http.routers.openwebui.tls=true"
       - "traefik.http.services.openwebui.loadbalancer.server.port=8080"
     restart: unless-stopped
