@@ -10,7 +10,7 @@ services:
       - homelab-network
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.beszel.rule=Host(`health.koye.casa`)"
+      - "traefik.http.routers.beszel.rule=Host(`monitor.koye.casa`)"
       - "traefik.http.routers.beszel.tls=true"
       - "traefik.http.services.beszel.loadbalancer.server.port=8090"
     environment:

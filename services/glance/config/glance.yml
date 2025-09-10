@@ -1,0 +1,19 @@
+server:
+  port: 8080
+  proxied: true
+  assets-path: /app/assets
+
+branding:
+  app-name: "koye.casa"
+  logo-text: "koye.casa"
+
+theme:
+  background-color: 240 8 9
+  primary-color: 43 50 70
+  positive-color: 61 66 44
+  negative-color: 0 70 70
+  contrast-multiplier: 1.1
+
+pages:
+  - $include: dashboard.yml
+  - $include: homelab.yml

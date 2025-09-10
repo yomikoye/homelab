@@ -1,0 +1,46 @@
+- name: Homelab
+  columns:
+    - size: full
+      widgets:
+        - type: bookmarks
+          title: Services
+          groups:
+            - title: Infrastructure
+              color: 200 50 50
+              links:
+                - title: Traefik
+                  url: https://traefik.koye.casa
+                  description: Reverse Proxy Dashboard
+                  icon: di:traefik
+                - title: Pi-hole
+                  url: https://pihole.koye.casa/admin
+                  description: DNS & Ad Blocker
+                  icon: di:pihole
+
+            - title: Media & Entertainment
+              color: 300 50 50
+              links:
+                - title: Jellyfin
+                  url: https://jellyfin.koye.casa
+                  description: Media Server
+                  icon: di:jellyfin
+                - title: Nextcloud
+                  url: https://nextcloud.koye.casa
+                  description: File Sharing & Cloud
+                  icon: di:nextcloud
+
+            - title: Development & AI
+              color: 120 50 50
+              links:
+                - title: OpenWebUI
+                  url: https://chat.koye.casa
+                  description: AI Chat Interface
+                  icon: di:openai
+                - title: Beszel
+                  url: https://monitor.koye.casa/system/dockerhost
+                  description: System Monitoring
+                  icon: di:grafana
+
+        - type: docker-containers
+          title: Docker Containers
+          hide-by-default: false

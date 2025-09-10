@@ -1,0 +1,108 @@
+- name: Dashboard
+  columns:
+    - size: small
+      widgets:
+        - type: calendar
+          first-day-of-week: monday
+        - type: weather
+          title: WEATHER
+          location: Krakow, Poland
+          units: metric
+          hour-format: 12h  
+        - type: rss
+          title: RSS FEED
+          feeds:
+            - url: https://www.investing.com/rss/news.rss
+              title: Investing.com
+            - url: https://ayearofreadingtheworld.com/feed/
+              title: Ann Morgan
+          limit: 6
+          collapse-after: 7
+
+    - size: full
+      widgets:
+        - type: hacker-news
+          title: HACKER NEWS
+          limit: 5
+          collapse-after: 5
+        - type: videos
+          title: VIDEOS
+          style: grid-cards
+          channels:
+            - UCc9J8pSak1Aieeoh1Gr_Zxg  # Beat The Denominator
+            - UC45qUbfYR9AmwR18sxS2eNQ  # Options With Ravish
+            - UCDarEqyzF1T0wJlCoYwFD5A  # Credit Spread Investing
+            - UCBJycsmduvYEL83R_U4JriQ  # MKBHD
+            - UCbta0n8i6Rljh0obO7HzG9A  # Joseph Carlson
+            - UCpIn7ox7j7bH_OFj7tYouOQ  # John Savill
+          limit: 8
+          collapse-after: 8
+        - type: group
+          define: &shared-properties
+            type: reddit
+            show-thumbnails: false
+            limit: 5
+            collapse-after: 5
+          widgets:
+            - subreddit: devops
+              title: /R/DEVOPS
+              <<: *shared-properties
+            - subreddit: europefire
+              title: /R/EUROPEFIRE
+              <<: *shared-properties
+            - subreddit: homelab
+              title: /R/HOMELAB
+              <<: *shared-properties
+            - subreddit: selfhosted
+              title: /R/SELFHOSTED
+              <<: *shared-properties
+            - subreddit: singularity
+              title: /R/SINGULARITY
+              <<: *shared-properties
+            
+    - size: small
+      widgets:
+        # - type: to-do
+        - type: monitor
+          cache: 10m
+          title: Services
+          sites:
+            - title: Traefik
+              url: https://traefik.koye.casa
+              icon: di:traefik
+            - title: Pi-hole
+              url: https://pihole.koye.casa/admin
+              icon: si:pihole
+            - title: Beszel
+              url: https://monitor.koye.casa
+              icon: si:grafana
+            - title: OpenWebUI
+              url: https://chat.koye.casa
+              icon: si:openai
+            - title: Jellyfin
+              url: https://jellyfin.koye.casa
+              icon: di:jellyfin
+        - type: markets
+          title: MARKETS
+          markets:
+            - symbol: AMZN
+              name: Amazon
+            - symbol: BTC
+              name: Bitcoin
+            - symbol: GOOGL
+              name: Google
+            - symbol: MSTR
+              name: Strategy
+            - symbol: NVO
+              name: Nvo
+            - symbol: REAX
+              name: Reax
+            - symbol: SOUN
+              name: Soun
+            - symbol: SMCI
+              name: Smci
+            - symbol: TSM
+              name: Tsmc
+            - symbol: V
+              name: Visa
+            
