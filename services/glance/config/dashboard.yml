@@ -18,6 +18,12 @@
               shortcut: "!yy"
               url: https://www.youtube.com/results?search_query={QUERY}
         - type: to-do
+        - type: custom-api
+          title: Random Fact
+          cache: 1h
+          url: https://uselessfacts.jsph.pl/api/v2/facts/random
+          template: |
+            <p class="size-h4 color-paragraph">{{ .JSON.String "text" }}</p>
         - type: rss
           title: RSS FEED
           feeds:
@@ -82,22 +88,25 @@
         - type: monitor
           cache: 1m
           title: Services
-          sites:
-            - title: Traefik
-              url: https://traefik.koye.casa
-              icon: di:traefik
-            - title: Pi-hole
-              url: https://pihole.koye.casa/admin
-              icon: si:pihole
-            # - title: Beszel
-            #   url: https://monitor.koye.casa
-              # icon: si:grafana
-            - title: OpenWebUI
-              url: https://chat.koye.casa
-              icon: si:openai
+          sites:            
+            - title: Beszel
+              url: https://monitor.koye.casa
+              icon: di:beszel
+            - title: Glance
+              url: https://dash.koye.casa
+              icon: di:glance
             - title: Jellyfin
               url: https://jellyfin.koye.casa
               icon: di:jellyfin
+            - title: OpenWebUI
+              url: https://chat.koye.casa
+              icon: /assets/openwebui.webp
+            - title: Pi-hole
+              url: https://pihole.koye.casa/admin
+              icon: /assets/pihole.svg
+            - title: Traefik
+              url: https://traefik.koye.casa
+              icon: di:traefik
         - type: markets
           title: MARKETS
           markets:
