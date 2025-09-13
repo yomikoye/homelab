@@ -4,11 +4,20 @@
       widgets:
         - type: calendar
           first-day-of-week: monday
-        - type: weather
-          title: WEATHER
-          location: Krakow, Poland
-          units: metric
-          hour-format: 12h  
+        - type: search
+          search-engine: duckduckgo
+          new-tab: true
+          bangs:
+            - title: Google
+              shortcut: "!gg"
+              url: https://www.google.com/search?q={QUERY}
+            - title: Perplexity
+              shortcut: "!pp"
+              url: https://www.perplexity.ai/search?q={QUERY}
+            - title: YouTube
+              shortcut: "!yy"
+              url: https://www.youtube.com/results?search_query={QUERY}
+        - type: to-do
         - type: rss
           title: RSS FEED
           feeds:
@@ -16,14 +25,14 @@
               title: Investing.com
             - url: https://ayearofreadingtheworld.com/feed/
               title: Ann Morgan
-          limit: 6
+          limit: 7
           collapse-after: 7
 
     - size: full
       widgets:
         - type: hacker-news
           title: HACKER NEWS
-          limit: 5
+          limit: 4
           collapse-after: 5
         - type: videos
           title: VIDEOS
@@ -41,14 +50,14 @@
           define: &shared-properties
             type: reddit
             show-thumbnails: false
-            limit: 5
-            collapse-after: 5
+            limit: 7
+            collapse-after: 8
           widgets:
-            - subreddit: devops
-              title: /R/DEVOPS
-              <<: *shared-properties
             - subreddit: europefire
               title: /R/EUROPEFIRE
+              <<: *shared-properties
+            - subreddit: eupersonalfinance
+              title: /R/EUPERSONALFINANCE
               <<: *shared-properties
             - subreddit: homelab
               title: /R/HOMELAB
@@ -56,15 +65,22 @@
             - subreddit: selfhosted
               title: /R/SELFHOSTED
               <<: *shared-properties
-            - subreddit: singularity
-              title: /R/SINGULARITY
+            - subreddit: shortsqueeze
+              title: /R/SHORTSQUEEZE
               <<: *shared-properties
-            
+            - subreddit: smallstreetbets
+              title: /R/SMALLSTREETBETS
+              <<: *shared-properties
+
     - size: small
       widgets:
-        # - type: to-do
+        - type: weather
+          title: WEATHER
+          location: Krakow, Poland
+          units: metric
+          hour-format: 12h
         - type: monitor
-          cache: 10m
+          cache: 1m
           title: Services
           sites:
             - title: Traefik
@@ -73,9 +89,9 @@
             - title: Pi-hole
               url: https://pihole.koye.casa/admin
               icon: si:pihole
-            - title: Beszel
-              url: https://monitor.koye.casa
-              icon: si:grafana
+            # - title: Beszel
+            #   url: https://monitor.koye.casa
+              # icon: si:grafana
             - title: OpenWebUI
               url: https://chat.koye.casa
               icon: si:openai

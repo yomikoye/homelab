@@ -11,11 +11,11 @@
                 - title: Traefik
                   url: https://traefik.koye.casa
                   description: Reverse Proxy Dashboard
-                  icon: di:traefik
+                  icon: si:traefik
                 - title: Pi-hole
                   url: https://pihole.koye.casa/admin
                   description: DNS & Ad Blocker
-                  icon: di:pihole
+                  icon: si:pihole
 
             - title: Media & Entertainment
               color: 300 50 50
@@ -23,11 +23,11 @@
                 - title: Jellyfin
                   url: https://jellyfin.koye.casa
                   description: Media Server
-                  icon: di:jellyfin
+                  icon: si:jellyfin
                 - title: Nextcloud
                   url: https://nextcloud.koye.casa
                   description: File Sharing & Cloud
-                  icon: di:nextcloud
+                  icon: si:nextcloud
 
             - title: Development & AI
               color: 120 50 50
@@ -35,11 +35,11 @@
                 - title: OpenWebUI
                   url: https://chat.koye.casa
                   description: AI Chat Interface
-                  icon: di:openai
-                - title: Beszel
-                  url: https://monitor.koye.casa/system/dockerhost
-                  description: System Monitoring
-                  icon: di:grafana
+                  icon: si:openai
+                # - title: Beszel
+                #   url: https://monitor.koye.casa/system/dockerhost
+                #   description: System Monitoring
+                #   icon: si:grafana
 
         - type: docker-containers
           title: Docker Containers

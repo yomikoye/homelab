@@ -7,12 +7,19 @@ branding:
   app-name: "koye.casa"
   logo-text: "koye.casa"
 
-theme:
-  background-color: 240 8 9
-  primary-color: 43 50 70
-  positive-color: 61 66 44
-  negative-color: 0 70 70
-  contrast-multiplier: 1.1
+# theme: #my custom theme  
+#   background-color: 240 8 9
+#   primary-color: 43 50 70
+#   positive-color: 61 66 44
+#   negative-color: 0 70 70
+#   contrast-multiplier: 1.1
+
+theme: #Catppuccin Frappe
+  background-color: 229 19 23
+  contrast-multiplier: 1.2
+  primary-color: 222 74 74
+  positive-color: 96 44 68
+  negative-color: 359 68 71
 
 pages:
   - $include: dashboard.yml
