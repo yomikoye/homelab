@@ -36,10 +36,10 @@
                   url: https://chat.koye.casa
                   description: AI Chat Interface
                   icon: si:openai
-                # - title: Beszel
-                #   url: https://monitor.koye.casa/system/dockerhost
-                #   description: System Monitoring
-                #   icon: si:grafana
+                - title: Beszel
+                  url: https://monitor.koye.casa/system/dockerhost
+                  description: System Monitoring
+                  icon: si:grafana
 
         - type: docker-containers
           title: Docker Containers
