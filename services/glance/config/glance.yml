@@ -24,3 +24,4 @@ theme: #Catppuccin Frappe
 pages:
   - $include: dashboard.yml
   - $include: homelab.yml
+  - $include: rss.yml

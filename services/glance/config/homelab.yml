@@ -5,42 +5,58 @@
         - type: bookmarks
           title: Services
           groups:
-            - title: Infrastructure
+            - title: Infra
               color: 200 50 50
               links:
-                - title: Traefik
-                  url: https://traefik.koye.casa
-                  description: Reverse Proxy Dashboard
-                  icon: si:traefik
+                - title: Beszel
+                  url: https://monitor.koye.casa
+                  description: System Monitoring
+                  icon: si:grafana
+                - title: Glance
+                  url: https://app.koye.casa
+                  description: Dashboard Hub
+                  icon: si:glance
                 - title: Pi-hole
                   url: https://pihole.koye.casa/admin
                   description: DNS & Ad Blocker
                   icon: si:pihole
+                - title: Traefik
+                  url: https://traefik.koye.casa
+                  description: Reverse Proxy Dashboard
+                  icon: si:traefik
 
-            - title: Media & Entertainment
+            - title: Media
               color: 300 50 50
               links:
+                - title: Audible
+                  url: https://audible.koye.casa
+                  description: Audiobook Library
+                  icon: si:audiobookshelf
                 - title: Jellyfin
                   url: https://jellyfin.koye.casa
                   description: Media Server
                   icon: si:jellyfin
-                - title: Nextcloud
-                  url: https://nextcloud.koye.casa
-                  description: File Sharing & Cloud
-                  icon: si:nextcloud
 
-            - title: Development & AI
-              color: 120 50 50
+            - title: Tools
+              color: 60 50 50
               links:
-                - title: OpenWebUI
+                - title: Books
+                  url: https://books.koye.casa
+                  description: E-book Library & Management
+                  icon: di:calibre
+                - title: Chat
                   url: https://chat.koye.casa
                   description: AI Chat Interface
                   icon: si:openai
-                - title: Beszel
-                  url: https://monitor.koye.casa/system/dockerhost
-                  description: System Monitoring
-                  icon: si:grafana
-
+                - title: Kavita
+                  url: https://kavita.koye.casa
+                  description: Media Server
+                  icon: di:kavita
+                - title: SaveBooks
+                  url: https://savebooks.koye.casa
+                  description: Automated Book Downloader
+                  icon: di:vault
+                
         - type: docker-containers
           title: Docker Containers
           hide-by-default: false

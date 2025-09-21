@@ -12,7 +12,7 @@ services:
       - homelab-network
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.glance.rule=Host(`dash.koye.casa`)"
+      - "traefik.http.routers.glance.rule=Host(`app.koye.casa`)"
       - "traefik.http.routers.glance.tls=true"
       - "traefik.http.services.glance.loadbalancer.server.port=8080"
     restart: unless-stopped

@@ -25,14 +25,21 @@
           template: |
             <p class="size-h4 color-paragraph">{{ .JSON.String "text" }}</p>
         - type: rss
+          title: GOODREADS
+          feeds:
+            - url: https://www.goodreads.com/user/updates_rss/29724933
+              title: kabayomi
+          limit: 4
+          collapse-after: 4
+        - type: rss
           title: RSS FEED
           feeds:
             - url: https://www.investing.com/rss/news.rss
               title: Investing.com
             - url: https://ayearofreadingtheworld.com/feed/
               title: Ann Morgan
-          limit: 7
-          collapse-after: 7
+          limit: 4
+          collapse-after: 4
 
     - size: full
       widgets:
@@ -56,27 +63,28 @@
           define: &shared-properties
             type: reddit
             show-thumbnails: false
-            limit: 7
-            collapse-after: 8
+            limit: 12
+            collapse-after: 12
           widgets:
             - subreddit: europefire
               title: /R/EUROPEFIRE
               <<: *shared-properties
-            - subreddit: eupersonalfinance
-              title: /R/EUPERSONALFINANCE
-              <<: *shared-properties
             - subreddit: homelab
               title: /R/HOMELAB
+              <<: *shared-properties
+            - subreddit: optionswheel
+              title: /R/OPTIONSWHEEL
               <<: *shared-properties
             - subreddit: selfhosted
               title: /R/SELFHOSTED
               <<: *shared-properties
-            - subreddit: shortsqueeze
-              title: /R/SHORTSQUEEZE
-              <<: *shared-properties
             - subreddit: smallstreetbets
               title: /R/SMALLSTREETBETS
               <<: *shared-properties
+            - subreddit: wallstreetbets
+              title: /R/WALLSTREETBETS
+              <<: *shared-properties
+            
 
     - size: small
       widgets:
@@ -89,21 +97,33 @@
           cache: 1m
           title: Services
           sites:            
+            - title: Audible
+              url: https://audible.koye.casa
+              icon: di:audiobookshelf
             - title: Beszel
               url: https://monitor.koye.casa
               icon: di:beszel
+            - title: Books
+              url: https://books.koye.casa
+              icon: di:calibre
+            - title: Chat
+              url: https://chat.koye.casa
+              icon: /assets/openwebui.webp
             - title: Glance
-              url: https://dash.koye.casa
+              url: https://app.koye.casa
               icon: di:glance
             - title: Jellyfin
               url: https://jellyfin.koye.casa
               icon: di:jellyfin
-            - title: OpenWebUI
-              url: https://chat.koye.casa
-              icon: /assets/openwebui.webp
+            - title: Kavita
+              url: https://kavita.koye.casa
+              icon: di:kavita
             - title: Pi-hole
               url: https://pihole.koye.casa/admin
               icon: /assets/pihole.svg
+            - title: Savebooks
+              url: https://savebooks.koye.casa
+              icon: di:vault
             - title: Traefik
               url: https://traefik.koye.casa
               icon: di:traefik
@@ -116,6 +136,10 @@
               name: Bitcoin
             - symbol: GOOGL
               name: Google
+            - symbol: HIMS
+              name: Hims
+            - symbol: HOOD
+              name: Hood
             - symbol: MSTR
               name: Strategy
             - symbol: NVO

@@ -1,0 +1,132 @@
+- name: RSS
+  head-widgets:
+    - type: rss
+      title: Feed
+      style: horizontal-cards
+      limit: 6
+      collapse-after: 6
+      feeds:
+        - url: https://poorlydrawnlines.com/category/comic/feed/
+          title: Poorly Drawn Lines
+        - url: https://www.smbc-comics.com/comic/rss
+          title: Saturday Morning Breakfast Cereal
+        - url: https://www.nasa.gov/feeds/iotd-feed
+          title: NASA Image of the Day
+        - url: https://feeds.feedburner.com/oatmealfeed
+          title: The Oatmeal
+        - url: https://feeds.feedburner.com/damninteresting/all
+          title: Damn Interesting
+        - url: https://foxtrot.com/feed/
+          title: FoxTrot
+  columns:
+    - size: full
+      widgets:
+        - type: rss
+          title: News
+          style: detailed-list
+          limit: 5
+          collapse-after: 5
+          feeds:
+            - url: https://www.bbc.com/news/rss.xml
+              title: BBC
+            - url: https://www.economist.com/business/rss.xml
+              title: Business
+            - url: https://www.economist.com/europe/rss.xml
+              title: Europe
+            - url: https://www.economist.com/finance-and-economics/rss.xml
+              title: Markets
+            - url: https://www.theatlantic.com/feed/all
+              title: The Atlantic
+        - type: rss
+          title: Mixed
+          style: detailed-list
+          limit: 5
+          collapse-after: 5
+          feeds:
+            - url: https://dynomight.net/feed.xml
+              title: Dynomight
+            - url: https://feeds.hbr.org/harvardbusiness
+              title: Harvard Business Review
+            - url: https://randsinrepose.com/feed/
+              title: Rands in Repose
+            - url: https://waitbutwhy.com/feed
+              title: Wait But Why
+            - url: https://www.booooooom.com/feed/
+              title: BOOOOOOOM!
+            - url: https://exceptionalindividuals.com/feed/
+              title: Exceptional Individuals
+            - url: https://www.gottman.com/feed/
+              title: The Gottman Institute
+            - url: https://differentbrains.org/feed/
+              title: Different Brains
+            - url: https://www.goodtherapy.org/blog/feed/
+              title: GoodTherapy
+            - url: https://www.strongerbyscience.com/feed/
+              title: Stronger by Science
+            - url: https://www.atlasobscura.com/feeds/latest
+              title: Atlas Obscura
+            - url: https://bookriot.com/feed
+              title: Book Riot
+            - url: https://cointelegraph.com/rss
+              title: Cointelegraph
+          
+    - size: full
+      widgets:
+        - type: rss
+          title: Tech
+          style: detailed-list
+          limit: 5
+          collapse-after: 5
+          feeds:
+            - url: https://www.producthunt.com/feed
+              title: Product Hunt
+            - url: https://venturebeat.com/feed/
+              title: VentureBeat
+            - url: https://techcrunch.com/feed/
+              title: TechCrunch
+            - url: https://www.wired.com/feed/rss
+              title: Wired
+            - url: https://feeds.arstechnica.com/arstechnica/index/
+              title: Ars Technica
+            - url: https://www.theverge.com/rss/index.xml
+              title: The Verge
+            - url: https://www.joelonsoftware.com/feed/
+              title: Joel on Software
+            - url: https://bair.berkeley.edu/blog/feed.xml
+              title: Berkeley | AI
+            - url: https://machinelearningmastery.com/blog/feed/
+              title: ML Mastery
+            - url: https://jvns.ca/atom.xml
+              title: Julia Evans
+            - url: https://krebsonsecurity.com/feed/
+              title: Krebs on Security
+            - url: https://newsletter.pragmaticengineer.com/feed
+              title: The Pragmatic Engineer
+        - type: rss
+          title: Science
+          style: detailed-list
+          limit: 5
+          collapse-after: 5
+          feeds:
+            - url: https://feeds.feedburner.com/Backreaction
+              title: Sabine Hossenfelder
+            - url: https://flowingdata.com/feed
+              title: FlowingData
+            - url: https://what-if.xkcd.com/feed.atom
+              title: What If? (xkcd)
+            - url: https://xkcd.com/rss.xml
+              title: xkcd
+            - url: https://www.quantamagazine.org/feed/
+              title: Quanta Magazine
+            - url: https://www.nasa.gov/feed/
+              title: NASA
+            - url: https://www.nasa.gov/rss/dyn/breaking_news.rss
+              title: NASA Breaking News
+            - url: https://www.jeremykun.com/index.xml
+              title: Math ∩ Programming
+            - url: https://www.nature.com/nature.rss
+              title: Nature
+            - url: https://www.smithsonianmag.com/rss/
+              title: Smithsonian Magazine
+            - url: https://www.nationalgeographic.com/content/nationalgeographic/en_us/rss
+              title: National Geographic
