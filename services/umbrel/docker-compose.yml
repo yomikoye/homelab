@@ -1,0 +1,27 @@
+services:
+  umbrel:
+    container_name: umbrel
+    image: dockurr/umbrel
+    environment:
+      - TZ=Europe/Warsaw
+    volumes:
+      - /mnt/shared/portainer/umbrel:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - homelab-network
+    ports:
+      - "8088:80"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.umbrel.rule=Host(`umbrel.koye.casa`)"
+      - "traefik.http.routers.umbrel.tls=true"
+      - "traefik.http.services.umbrel.loadbalancer.server.port=80"
+    restart: unless-stopped
+    stop_grace_period: 1m
+    # devices:
+    #   - /dev/dri:/dev/dri # Hardware acceleration (if available)
+
+networks:
+  homelab-network:
+    name: homelab-network
+    external: true

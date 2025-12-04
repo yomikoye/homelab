@@ -97,15 +97,12 @@
           cache: 1m
           title: Services
           sites:            
-            - title: Audible
-              url: https://audible.koye.casa
-              icon: di:audiobookshelf
-            - title: Beszel
-              url: https://monitor.koye.casa
-              icon: di:beszel
-            - title: Books
-              url: https://books.koye.casa
-              icon: di:calibre
+            # - title: Audible
+            #   url: https://audible.koye.casa
+            #   icon: di:audiobookshelf
+            # - title: Books
+            #   url: https://books.koye.casa
+            #   icon: di:calibre
             - title: Chat
               url: https://chat.koye.casa
               icon: /assets/openwebui.webp
@@ -115,18 +112,22 @@
             - title: Jellyfin
               url: https://jellyfin.koye.casa
               icon: di:jellyfin
-            - title: Kavita
-              url: https://kavita.koye.casa
-              icon: di:kavita
+            # - title: Kavita
+            #   url: https://kavita.koye.casa
+            #   icon: di:kavita
             - title: Pi-hole
               url: https://pihole.koye.casa/admin
               icon: /assets/pihole.svg
-            - title: Savebooks
-              url: https://savebooks.koye.casa
-              icon: di:vault
+            # - title: Savebooks
+            #   url: https://savebooks.koye.casa
+            #   icon: di:vault
             - title: Traefik
               url: https://traefik.koye.casa
               icon: di:traefik
+            - title: Umbrel
+              url: https://umbrel.koye.casa
+              icon: di:umbrel
+
         - type: markets
           title: MARKETS
           markets:

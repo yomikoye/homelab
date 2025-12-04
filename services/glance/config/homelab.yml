@@ -8,8 +8,8 @@
             - title: Infra
               color: 200 50 50
               links:
-                - title: Beszel
-                  url: https://monitor.koye.casa
+                - title: umbrel
+                  url: https://umbrel.koye.casa
                   description: System Monitoring
                   icon: si:grafana
                 - title: Glance

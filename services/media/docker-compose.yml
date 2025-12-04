@@ -24,90 +24,90 @@ services:
     devices:
       - /dev/dri:/dev/dri # Hardware acceleration (if available)
 
-  audiobookshelf:
-    container_name: audiobookshelf
-    image: ghcr.io/advplyr/audiobookshelf:latest
-    environment:
-      - TZ=Europe/Warsaw
-    volumes:
-      - /mnt/shared/portainer/audiobookshelf/config:/config
-      - /mnt/shared/library/audiobooks:/media:ro
-    networks:
-      - homelab-network
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.audiobookshelf.rule=Host(`audible.koye.casa`)"
-      - "traefik.http.routers.audiobookshelf.tls=true"
-      - "traefik.http.services.audiobookshelf.loadbalancer.server.port=80"
-    restart: unless-stopped
+  # audiobookshelf:
+  #   container_name: audiobookshelf
+  #   image: ghcr.io/advplyr/audiobookshelf:latest
+  #   environment:
+  #     - TZ=Europe/Warsaw
+  #   volumes:
+  #     - /mnt/shared/portainer/audiobookshelf/config:/config
+  #     - /mnt/shared/library/audiobooks:/media:ro
+  #   networks:
+  #     - homelab-network
+  #   labels:
+  #     - "traefik.enable=true"
+  #     - "traefik.http.routers.audiobookshelf.rule=Host(`audible.koye.casa`)"
+  #     - "traefik.http.routers.audiobookshelf.tls=true"
+  #     - "traefik.http.services.audiobookshelf.loadbalancer.server.port=80"
+  #   restart: unless-stopped
 
-  calibrewa:
-    image: crocodilestick/calibre-web-automated:latest
-    container_name: calibrewa
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/Warsaw
-      - HARDCOVER_TOKEN=${HARDCOVER_TOKEN}
-      - NETWORK_SHARE_MODE=false
+  # calibrewa:
+  #   image: crocodilestick/calibre-web-automated:latest
+  #   container_name: calibrewa
+  #   environment:
+  #     - PUID=1000
+  #     - PGID=1000
+  #     - TZ=Europe/Warsaw
+  #     - HARDCOVER_TOKEN=${HARDCOVER_TOKEN}
+  #     - NETWORK_SHARE_MODE=false
     
-    volumes:
-      - /mnt/shared/portainer/calibrewa/config:/config
-      - /mnt/shared/library/book-ingest:/cwa-book-ingest
-      - /mnt/shared/library/books:/calibre-library
-      - /mnt/shared/portainer/calibrewa/plugins:/config/.config/calibre/plugins
-    networks:
-      - homelab-network
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.calibre-web-automated.rule=Host(`books.koye.casa`)"
-      - "traefik.http.routers.calibre-web-automated.tls=true"
-      - "traefik.http.services.calibre-web-automated.loadbalancer.server.port=8083"
-    restart: unless-stopped
+  #   volumes:
+  #     - /mnt/shared/portainer/calibrewa/config:/config
+  #     - /mnt/shared/library/book-ingest:/cwa-book-ingest
+  #     - /mnt/shared/library/books:/calibre-library
+  #     - /mnt/shared/portainer/calibrewa/plugins:/config/.config/calibre/plugins
+  #   networks:
+  #     - homelab-network
+  #   labels:
+  #     - "traefik.enable=true"
+  #     - "traefik.http.routers.calibre-web-automated.rule=Host(`books.koye.casa`)"
+  #     - "traefik.http.routers.calibre-web-automated.tls=true"
+  #     - "traefik.http.services.calibre-web-automated.loadbalancer.server.port=8083"
+  #   restart: unless-stopped
 
-  savebooks:
-    image: ghcr.io/calibrain/calibre-web-automated-book-downloader-tor:latest
-    container_name: savebooks
-    environment:
-      - FLASK_PORT=8084
-      - LOG_LEVEL=info
-      - BOOK_LANGUAGE=en
-      - USE_BOOK_TITLE=true
-      - TZ=Europe/Warsaw
-      - USING_TOR=true
-      - APP_ENV=prod
-    cap_add:
-      - NET_ADMIN
-      - NET_RAW
-    volumes:
-      - /mnt/shared/library/book-ingest:/cwa-book-ingest
-    networks:
-      - homelab-network
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.calibre-web-automated-book-downloader-tor.rule=Host(`savebooks.koye.casa`)"
-      - "traefik.http.routers.calibre-web-automated-book-downloader-tor.tls=true"
-      - "traefik.http.services.calibre-web-automated-book-downloader-tor.loadbalancer.server.port=8084"
-    restart: unless-stopped
+  # savebooks:
+  #   image: ghcr.io/calibrain/calibre-web-automated-book-downloader-tor:latest
+  #   container_name: savebooks
+  #   environment:
+  #     - FLASK_PORT=8084
+  #     - LOG_LEVEL=info
+  #     - BOOK_LANGUAGE=en
+  #     - USE_BOOK_TITLE=true
+  #     - TZ=Europe/Warsaw
+  #     - USING_TOR=true
+  #     - APP_ENV=prod
+  #   cap_add:
+  #     - NET_ADMIN
+  #     - NET_RAW
+  #   volumes:
+  #     - /mnt/shared/library/book-ingest:/cwa-book-ingest
+  #   networks:
+  #     - homelab-network
+  #   labels:
+  #     - "traefik.enable=true"
+  #     - "traefik.http.routers.calibre-web-automated-book-downloader-tor.rule=Host(`savebooks.koye.casa`)"
+  #     - "traefik.http.routers.calibre-web-automated-book-downloader-tor.tls=true"
+  #     - "traefik.http.services.calibre-web-automated-book-downloader-tor.loadbalancer.server.port=8084"
+  #   restart: unless-stopped
 
-  kavita:
-    container_name: kavita
-    image: jvmilazz0/kavita:latest
-    environment:
-      - TZ=Europe/Warsaw
-    volumes:
-      - /mnt/shared/portainer/kavita/config:/kavita/config
-      - /mnt/shared/library/books:/books:ro
-      - /mnt/shared/library/comics:/comics
-      - /mnt/shared/library/manga:/manga
-    networks:
-      - homelab-network
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.kavita.rule=Host(`kavita.koye.casa`)"
-      - "traefik.http.routers.kavita.tls=true"
-      - "traefik.http.services.kavita.loadbalancer.server.port=5000"
-    restart: unless-stopped
+  # kavita:
+  #   container_name: kavita
+  #   image: jvmilazz0/kavita:latest
+  #   environment:
+  #     - TZ=Europe/Warsaw
+  #   volumes:
+  #     - /mnt/shared/portainer/kavita/config:/kavita/config
+  #     - /mnt/shared/library/books:/books:ro
+  #     - /mnt/shared/library/comics:/comics
+  #     - /mnt/shared/library/manga:/manga
+  #   networks:
+  #     - homelab-network
+  #   labels:
+  #     - "traefik.enable=true"
+  #     - "traefik.http.routers.kavita.rule=Host(`kavita.koye.casa`)"
+  #     - "traefik.http.routers.kavita.tls=true"
+  #     - "traefik.http.services.kavita.loadbalancer.server.port=5000"
+  #   restart: unless-stopped
 
   # calibre:
   #   image: ghcr.io/linuxserver/calibre
