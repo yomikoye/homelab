@@ -115,6 +115,9 @@
             # - title: Kavita
             #   url: https://kavita.koye.casa
             #   icon: di:kavita
+            - title: Pdf
+              url: https://pdf.koye.casa
+              icon: mdi:file-pdf
             - title: Pi-hole
               url: https://pihole.koye.casa/admin
               icon: /assets/pihole.svg
@@ -125,7 +128,7 @@
               url: https://traefik.koye.casa
               icon: di:traefik
             - title: Umbrel
-              url: https://umbrel.koye.casa
+              url: http://192.168.88.156:8088
               icon: di:umbrel
 
         - type: markets

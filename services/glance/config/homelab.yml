@@ -48,10 +48,10 @@
                   url: https://chat.koye.casa
                   description: AI Chat Interface
                   icon: si:openai
-                - title: Kavita
-                  url: https://kavita.koye.casa
-                  description: Media Server
-                  icon: di:kavita
+                - title: Pdf
+                  url: https://pdf.koye.casa/admin
+                  description: PDF Tools
+                  icon: mdi:file-pdf
                 - title: SaveBooks
                   url: https://savebooks.koye.casa
                   description: Automated Book Downloader
