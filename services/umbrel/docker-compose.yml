@@ -4,6 +4,7 @@ services:
     image: dockurr/umbrel
     environment:
       - TZ=Europe/Warsaw
+      - DEVICE_HOSTS=umbrel.koye.casa
     volumes:
       - /mnt/shared/portainer/umbrel:/data
       - /var/run/docker.sock:/var/run/docker.sock
@@ -16,10 +17,14 @@ services:
       - "traefik.http.routers.umbrel.rule=Host(`umbrel.koye.casa`)"
       - "traefik.http.routers.umbrel.tls=true"
       - "traefik.http.services.umbrel.loadbalancer.server.port=80"
+          # Add headers middleware
+      - "traefik.http.routers.umbrel.middlewares=umbrel-headers"
+      - "traefik.http.middlewares.umbrel-headers.headers.customrequestheaders.X-Forwarded-Proto=https"
+      - "traefik.http.middlewares.umbrel-headers.headers.customrequestheaders.X-Forwarded-Host=umbrel.koye.casa"
     restart: unless-stopped
     stop_grace_period: 1m
-    # devices:
-    #   - /dev/dri:/dev/dri # Hardware acceleration (if available)
+    devices:
+      - /dev/dri:/dev/dri # Hardware acceleration (if available)
 
 networks:
   homelab-network:

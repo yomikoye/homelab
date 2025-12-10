@@ -1,0 +1,38 @@
+services:
+  bentopdf:
+    container_name: bentopdf
+    image: bentopdf/bentopdf:latest
+    environment:
+      - TZ=Europe/Warsaw
+    networks:
+      - homelab-network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.pdf.rule=Host(`pdf.koye.casa`)"
+      - "traefik.http.routers.pdf.entrypoints=websecure"
+      - "traefik.http.routers.pdf.tls=true"
+      - "traefik.http.services.pdf.loadbalancer.server.port=8080"
+    restart: unless-stopped
+  optionable:
+    container_name: optionable
+    image: yomikoye/optionable:latest
+    environment:
+      - TZ=Europe/Warsaw
+      - NODE_ENV=production
+      - DATA_DIR=/data
+    volumes:
+      - /mnt/shared/portainer/optionable/data:/data
+    networks:
+      - homelab-network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.optionable.rule=Host(`optionable.koye.casa`)"
+      - "traefik.http.routers.optionable.entrypoints=websecure"
+      - "traefik.http.routers.optionable.tls=true"
+      - "traefik.http.services.optionable.loadbalancer.server.port=8080"
+    restart: unless-stopped
+
+networks:
+  homelab-network:
+    name: homelab-network
+    external: true

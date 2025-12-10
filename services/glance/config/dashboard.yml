@@ -66,17 +66,14 @@
             limit: 12
             collapse-after: 12
           widgets:
-            - subreddit: europefire
-              title: /R/EUROPEFIRE
-              <<: *shared-properties
             - subreddit: homelab
               title: /R/HOMELAB
               <<: *shared-properties
-            - subreddit: optionswheel
-              title: /R/OPTIONSWHEEL
-              <<: *shared-properties
             - subreddit: selfhosted
               title: /R/SELFHOSTED
+              <<: *shared-properties
+            - subreddit: optionswheel
+              title: /R/OPTIONSWHEEL
               <<: *shared-properties
             - subreddit: smallstreetbets
               title: /R/SMALLSTREETBETS
@@ -103,6 +100,12 @@
             # - title: Books
             #   url: https://books.koye.casa
             #   icon: di:calibre
+            # - title: Kavita
+            #   url: https://kavita.koye.casa
+            #   icon: di:kavita
+            # - title: Savebooks
+            #   url: https://savebooks.koye.casa
+            #   icon: di:vault
             - title: Chat
               url: https://chat.koye.casa
               icon: /assets/openwebui.webp
@@ -112,18 +115,19 @@
             - title: Jellyfin
               url: https://jellyfin.koye.casa
               icon: di:jellyfin
-            # - title: Kavita
-            #   url: https://kavita.koye.casa
-            #   icon: di:kavita
+            
+            - title: Miner
+              url: http://192.168.88.34
+              icon: di:bitcoin
+            - title: Optionable
+              url: https://optionable.koye.casa
+              icon: di:elysian
             - title: Pdf
               url: https://pdf.koye.casa
-              icon: mdi:file-pdf
+              icon: di:bentopdf
             - title: Pi-hole
               url: https://pihole.koye.casa/admin
               icon: /assets/pihole.svg
-            # - title: Savebooks
-            #   url: https://savebooks.koye.casa
-            #   icon: di:vault
             - title: Traefik
               url: https://traefik.koye.casa
               icon: di:traefik
@@ -146,10 +150,6 @@
               name: Hood
             - symbol: MSTR
               name: Strategy
-            - symbol: NVO
-              name: Nvo
-            - symbol: REAX
-              name: Reax
             - symbol: SOUN
               name: Soun
             - symbol: SMCI
