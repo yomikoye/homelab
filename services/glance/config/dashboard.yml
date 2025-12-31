@@ -1,11 +1,35 @@
 - name: Dashboard
+  head-widgets:
+    - type: markets
+      hide-header: true
+      markets:
+        - symbol: AMZN
+          name: Amazon
+        - symbol: BTC-USD
+          name: Bitcoin
+        - symbol: GOOGL
+          name: Google
+        - symbol: HIMS
+          name: Hims
+        - symbol: HOOD
+          name: Hood
+        - symbol: MSTR
+          name: Strategy
+        - symbol: SOUN
+          name: Soun
+        - symbol: SMCI
+          name: Smci
+        - symbol: TSM
+          name: Tsmc
+        - symbol: V
+          name: Visa
   columns:
     - size: small
       widgets:
         - type: calendar
           first-day-of-week: monday
         - type: search
-          search-engine: duckduckgo
+          search-engine: google
           new-tab: true
           bangs:
             - title: Google
@@ -108,54 +132,53 @@
             #   icon: di:vault
             - title: Chat
               url: https://chat.koye.casa
-              icon: /assets/openwebui.webp
+              icon: di:open-webui
+            - title: Draw
+              url: https://draw.koye.casa
+              icon: di:excalidraw
             - title: Glance
               url: https://app.koye.casa
               icon: di:glance
             - title: Jellyfin
               url: https://jellyfin.koye.casa
               icon: di:jellyfin
-            
+            # - title: Maybe
+            #   url: https://maybe.koye.casa
+            #   icon: di:maybe
             - title: Miner
               url: http://192.168.88.34
               icon: di:bitcoin
+            - title: Prowlarr
+              url: https://prowlarr.koye.casa
+              icon: di:prowlarr
+            - title: qbit
+              url: https://qbit.koye.casa
+              icon: di:qbittorrent
+            - title: Radarr
+              url: https://radarr.koye.casa
+              icon: di:radarr
+            - title: Sonarr
+              url: https://sonarr.koye.casa
+              icon: di:sonarr
+            - title: TOS
+              url: https://trade.thinkorswim.com
+              icon: si:svg
+            - title: TVIEW
+              url: https://tradingview.com
+              icon: di:trading-view
             - title: Optionable
               url: https://optionable.koye.casa
               icon: di:elysian
-            - title: Pdf
+            - title: PDF
               url: https://pdf.koye.casa
               icon: di:bentopdf
             - title: Pi-hole
               url: https://pihole.koye.casa/admin
-              icon: /assets/pihole.svg
+              icon: di:pi-hole
             - title: Traefik
               url: https://traefik.koye.casa
               icon: di:traefik
-            - title: Umbrel
-              url: http://192.168.88.156:8088
-              icon: di:umbrel
+            - title: PVE
+              url: http://192.168.88.2:8006
+              icon: di:proxmox
 
-        - type: markets
-          title: MARKETS
-          markets:
-            - symbol: AMZN
-              name: Amazon
-            - symbol: BTC
-              name: Bitcoin
-            - symbol: GOOGL
-              name: Google
-            - symbol: HIMS
-              name: Hims
-            - symbol: HOOD
-              name: Hood
-            - symbol: MSTR
-              name: Strategy
-            - symbol: SOUN
-              name: Soun
-            - symbol: SMCI
-              name: Smci
-            - symbol: TSM
-              name: Tsmc
-            - symbol: V
-              name: Visa
-            

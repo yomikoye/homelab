@@ -19,7 +19,7 @@ services:
       - "8080:8080"  # Traefik dashboard
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - /mnt/shared/portainer/traefik/config:/etc/traefik:ro
+      - /mnt/shared/homelab/traefik/config:/etc/traefik:ro
     networks:
       - homelab-network
     labels:
@@ -44,8 +44,8 @@ services:
       FTLCONF_webserver_api_password: ''
       FTLCONF_dns_listeningMode: 'all'
     volumes:
-      - /mnt/shared/portainer/pihole/pihole:/etc/pihole
-      - /mnt/shared/portainer/pihole/dnsmasq:/etc/dnsmasq.d
+      - /mnt/shared/homelab/pihole/pihole:/etc/pihole
+      - /mnt/shared/homelab/pihole/dnsmasq:/etc/dnsmasq.d
     networks:
       - homelab-network
     labels:

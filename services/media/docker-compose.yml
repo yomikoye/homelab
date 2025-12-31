@@ -3,12 +3,12 @@ services:
     container_name: jellyfin
     image: jellyfin/jellyfin:latest
     environment:
-      - TZ=Europe/Warsaw
-      - JELLYFIN_PublishedServerUrl=https://jellyfin.koye.casa
+      - TZ=${TZ}
+      - JELLYFIN_PublishedServerUrl=https://jellyfin.${DOMAIN}
     volumes:
-      - /mnt/shared/portainer/jellyfin/config:/config
-      - /mnt/shared/portainer/jellyfin/cache:/cache
-      - /mnt/shared/media:/media:ro
+      - ${COMMON_PATH}/homelab/jellyfin/config:/config
+      - ${COMMON_PATH}/homelab/jellyfin/cache:/cache
+      - ${COMMON_PATH}/media:/media:ro
     ports:
       - "7359:7359/udp" # Auto-discovery
       - "1900:1900/udp" # DLNA
@@ -17,13 +17,132 @@ services:
       - homelab-network
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.jellyfin.rule=Host(`jellyfin.koye.casa`)"
+      - "traefik.http.routers.jellyfin.rule=Host(`jellyfin.${DOMAIN}`)"
       - "traefik.http.routers.jellyfin.entrypoints=websecure"
       - "traefik.http.routers.jellyfin.tls=true"
       - "traefik.http.services.jellyfin.loadbalancer.server.port=8096"
     restart: unless-stopped
     devices:
       - /dev/dri:/dev/dri # Hardware acceleration (if available)
+  sonarr:
+    image: lscr.io/linuxserver/sonarr:latest
+    container_name: sonarr
+    environment:
+      - TZ=${TZ}
+    volumes:
+      - ${COMMON_PATH}/homelab/sonarr/config:/config
+      - ${COMMON_PATH}/media:/media
+    # ports:
+    #   - 8989:8989
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.sonarr.rule=Host(`sonarr.${DOMAIN}`)"
+      - "traefik.http.routers.sonarr.entrypoints=websecure"
+      - "traefik.http.routers.sonarr.tls=true"
+      - "traefik.http.services.sonarr.loadbalancer.server.port=8989"
+    networks:
+      - homelab-network
+    restart: unless-stopped
+  radarr:
+    image: lscr.io/linuxserver/radarr:latest
+    container_name: radarr
+    environment:
+      - TZ=${TZ}
+    volumes:
+      - ${COMMON_PATH}/homelab/radarr/config:/config
+      - ${COMMON_PATH}/media:/media
+    # ports:
+    #   - 7878:7878
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.radarr.rule=Host(`radarr.${DOMAIN}`)"
+      - "traefik.http.routers.radarr.entrypoints=websecure"
+      - "traefik.http.routers.radarr.tls=true"
+      - "traefik.http.services.radarr.loadbalancer.server.port=7878"
+    networks:
+      - homelab-network
+    restart: unless-stopped
+  gluetun:
+    image: qmcgaw/gluetun:v3.40.2
+    container_name: gluetun
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    environment:
+      - VPN_SERVICE_PROVIDER=nordvpn
+      - OPENVPN_USER=${OPENVPN_USER}
+      - OPENVPN_PASSWORD=${OPENVPN_PASSWORD}
+      - WIREGUARD_PRIVATE_KEY=${WIREGUARD_PRIVATE_KEY}
+      - SERVER_COUNTRIES=${SERVER_COUNTRIES}
+      - VPN_TYPE=${VPN_TYPE}
+      - TZ=${TZ}
+    ports:
+      - 8069:8069        # qBittorrent WebUI
+      - 6881:6881        # qBittorrent
+      - 6881:6881/udp    # qBittorrent
+    networks:
+      - homelab-network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.qbittorrent.rule=Host(`qbit.${DOMAIN}`)"
+      - "traefik.http.routers.qbittorrent.entrypoints=websecure"
+      - "traefik.http.routers.qbittorrent.tls=true"
+      - "traefik.http.services.qbittorrent.loadbalancer.server.port=8069"
+    restart: unless-stopped
+  qbittorrent:
+    image: lscr.io/linuxserver/qbittorrent:latest
+    container_name: qbittorrent
+    network_mode: "service:gluetun"
+    environment:
+      - WEBUI_PORT=8069
+      - TZ=${TZ}
+      # - DOCKER_MODS=ghcr.io/gabe565/linuxserver-mod-vuetorrent
+    volumes:
+      - ${COMMON_PATH}/homelab/qbittorrent/config:/config
+      - ${COMMON_PATH}/media:/media
+    depends_on:
+      - gluetun
+    restart: unless-stopped
+  prowlarr:
+    image: lscr.io/linuxserver/prowlarr:latest
+    container_name: prowlarr
+    environment:
+      - TZ=${TZ}
+    volumes:
+      - ${COMMON_PATH}/homelab/prowlarr/config:/config
+    # ports:
+    #   - 9696:9696
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.prowlarr.rule=Host(`prowlarr.${DOMAIN}`)"
+      - "traefik.http.routers.prowlarr.entrypoints=websecure"
+      - "traefik.http.routers.prowlarr.tls=true"
+      - "traefik.http.services.prowlarr.loadbalancer.server.port=9696"
+    networks:
+      - homelab-network
+    restart: unless-stopped
+  flaresolverr:
+    image: ghcr.io/flaresolverr/flaresolverr:latest
+    container_name: flaresolverr
+    environment:
+      - TZ=${TZ}
+      - LOG_LEVEL=${LOG_LEVEL:-info}
+      - LOG_HTML=${LOG_HTML:-false}
+      - CAPTCHA_SOLVER=${CAPTCHA_SOLVER:-none}
+    volumes:
+      - ${COMMON_PATH}/homelab/flaresolverr/config:/config
+    # ports:
+    #   - 9696:9696
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.flaresolverr.rule=Host(`flaresolver.${DOMAIN}`)"
+      - "traefik.http.routers.flaresolverr.entrypoints=websecure"
+      - "traefik.http.routers.flaresolverr.tls=true"
+      - "traefik.http.services.flaresolverr.loadbalancer.server.port=8191"
+    networks:
+      - homelab-network
+    restart: unless-stopped
 
   # audiobookshelf:
   #   container_name: audiobookshelf
@@ -31,8 +150,8 @@ services:
   #   environment:
   #     - TZ=Europe/Warsaw
   #   volumes:
-  #     - /mnt/shared/portainer/audiobookshelf/config:/config
-  #     - /mnt/shared/library/audiobooks:/media:ro
+  #     - ${COMMON_PATH}/homelab/audiobookshelf/config:/config
+  #     - ${COMMON_PATH}/library/audiobooks:/media:ro
   #   networks:
   #     - homelab-network
   #   labels:
@@ -53,10 +172,10 @@ services:
   #     - NETWORK_SHARE_MODE=false
     
   #   volumes:
-  #     - /mnt/shared/portainer/calibrewa/config:/config
-  #     - /mnt/shared/library/book-ingest:/cwa-book-ingest
-  #     - /mnt/shared/library/books:/calibre-library
-  #     - /mnt/shared/portainer/calibrewa/plugins:/config/.config/calibre/plugins
+  #     - ${COMMON_PATH}/homelab/calibrewa/config:/config
+  #     - ${COMMON_PATH}/library/book-ingest:/cwa-book-ingest
+  #     - ${COMMON_PATH}/library/books:/calibre-library
+  #     - ${COMMON_PATH}/homelab/calibrewa/plugins:/config/.config/calibre/plugins
   #   networks:
   #     - homelab-network
   #   labels:
@@ -81,7 +200,7 @@ services:
   #     - NET_ADMIN
   #     - NET_RAW
   #   volumes:
-  #     - /mnt/shared/library/book-ingest:/cwa-book-ingest
+  #     - ${COMMON_PATH}/library/book-ingest:/cwa-book-ingest
   #   networks:
   #     - homelab-network
   #   labels:
@@ -97,10 +216,10 @@ services:
   #   environment:
   #     - TZ=Europe/Warsaw
   #   volumes:
-  #     - /mnt/shared/portainer/kavita/config:/kavita/config
-  #     - /mnt/shared/library/books:/books:ro
-  #     - /mnt/shared/library/comics:/comics
-  #     - /mnt/shared/library/manga:/manga
+  #     - ${COMMON_PATH}/homelab/kavita/config:/kavita/config
+  #     - ${COMMON_PATH}/library/books:/books:ro
+  #     - ${COMMON_PATH}/library/comics:/comics
+  #     - ${COMMON_PATH}/library/manga:/manga
   #   networks:
   #     - homelab-network
   #   labels:
@@ -116,10 +235,10 @@ services:
   #   environment:
   #     - TZ=Europe/Warsaw
   #   volumes:
-  #     - /mnt/shared/portainer/calibre/config:/config
-  #     - /mnt/shared/portainer/calibre/uploads:/uploads
-  #     - /mnt/shared/portainer/calibre/plugins:/plugins
-  #     - /mnt/shared:/books
+  #     - ${COMMON_PATH}/homelab/calibre/config:/config
+  #     - ${COMMON_PATH}/homelab/calibre/uploads:/uploads
+  #     - ${COMMON_PATH}/homelab/calibre/plugins:/plugins
+  #     - ${COMMON_PATH}:/books
   #   networks:
   #     - homelab-network
   #   labels:
@@ -136,9 +255,9 @@ services:
   #     - TZ=Europe/Warsaw
   #     - DOCKER_MODS=linuxserver/mods:universal-calibre
   #   volumes:
-  #     - /mnt/shared/portainer/calibre-web/config:/config
-  #     - /mnt/shared:/books
-  #     - /mnt/shared/portainer/calibre/config:/config/calibre
+  #     - ${COMMON_PATH}/homelab/calibre-web/config:/config
+  #     - ${COMMON_PATH}:/books
+  #     - ${COMMON_PATH}/homelab/calibre/config:/config/calibre
   #   networks:
   #     - homelab-network
   #   labels:
@@ -157,9 +276,9 @@ services:
   #     - calibre
   #     - calibre-web
   #   volumes:
-  #     - /mnt/shared/portainer/readarr/config:/config
-  #     - /mnt/shared/portainer/readarr/downloads:/downloads
-  #     - /mnt/shared:/books
+  #     - ${COMMON_PATH}/homelab/readarr/config:/config
+  #     - ${COMMON_PATH}/homelab/readarr/downloads:/downloads
+  #     - ${COMMON_PATH}:/books
   #   networks:
   #     - homelab-network
   #   labels:

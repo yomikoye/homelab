@@ -1,0 +1,35 @@
+services:
+  gitlab:
+    container_name: gitlab
+    image: gitlab/gitlab-ee:latest
+    hostname: 'git.${DOMAIN}'
+    shm_size: '256m'
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        gitlab_rails['initial_root_password'] = '${GITLAB_ROOT_PASSWORD}'
+        external_url 'https://git.${DOMAIN}'
+        letsencrypt['enable'] = false
+        nginx['listen_port'] = 80
+        nginx['listen_https'] = false
+        nginx['proxy_set_headers'] = {
+          "X-Forwarded-Proto" => "https",
+          "X-Forwarded-Ssl" => "on"
+        }
+    volumes:
+      - ${COMMON_PATH}/homelab/gitlab/config:/etc/gitlab
+      - ${COMMON_PATH}/homelab/gitlab/data:/var/opt/gitlab
+      - ${COMMON_PATH}/homelab/gitlab/logs:/var/log/gitlab
+    networks:
+      - homelab-network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.gitlab.rule=Host(`git.${DOMAIN}`)"
+      - "traefik.http.routers.gitlab.entrypoints=websecure"
+      - "traefik.http.routers.gitlab.tls=true"
+      - "traefik.http.services.gitlab.loadbalancer.server.port=80"
+    restart: unless-stopped
+
+networks:
+  homelab-network:
+    name: homelab-network
+    external: true

@@ -13,6 +13,22 @@ services:
       - "traefik.http.routers.pdf.tls=true"
       - "traefik.http.services.pdf.loadbalancer.server.port=8080"
     restart: unless-stopped
+  excalidraw:
+    container_name: excalidraw
+    image: excalidraw/excalidraw:latest
+    environment:
+      - TZ=Europe/Warsaw
+    volumes:
+      - /mnt/shared/homelab/excalidraw:/data
+    networks:
+      - homelab-network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.excalidraw.rule=Host(`draw.koye.casa`)"
+      - "traefik.http.routers.excalidraw.entrypoints=websecure"
+      - "traefik.http.routers.excalidraw.tls=true"
+      - "traefik.http.services.excalidraw.loadbalancer.server.port=80"
+    restart: unless-stopped
   optionable:
     container_name: optionable
     image: yomikoye/optionable:latest
@@ -21,7 +37,7 @@ services:
       - NODE_ENV=production
       - DATA_DIR=/data
     volumes:
-      - /mnt/shared/portainer/optionable/data:/data
+      - /mnt/shared/homelab/optionable/data:/data
     networks:
       - homelab-network
     labels:
