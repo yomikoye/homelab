@@ -3,7 +3,9 @@ services:
     container_name: glance
     image: glanceapp/glance:latest
     environment:
-      - TZ=Europe/Warsaw
+      - TZ=${TZ}
+      - BESZEL_URL=${BESZEL_URL}
+      - BESZEL_TOKEN=${BESZEL_TOKEN}
     volumes:
       - ./config:/app/config
       - ./assets:/app/assets

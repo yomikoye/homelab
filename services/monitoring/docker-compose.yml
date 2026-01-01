@@ -4,8 +4,8 @@ services:
     container_name: beszel
     restart: unless-stopped
     volumes:
-      - /mnt/shared/portainer/beszel/beszel_data:/beszel_data
-      - /mnt/shared/portainer/beszel/beszel_socket:/beszel_socket
+      - /mnt/shared/homelab/beszel/beszel_data:/beszel_data
+      - /mnt/shared/homelab/beszel/beszel_socket:/beszel_socket
     networks:
       - homelab-network
     labels:
@@ -23,8 +23,8 @@ services:
     networks:
       - homelab-network
     volumes:
-      - /mnt/shared/portainer/beszel/beszel_agent_data:/var/lib/beszel-agent
-      - /mnt/shared/portainer/beszel/beszel_socket:/beszel_socket
+      - /mnt/shared/homelab/beszel/beszel_agent_data:/var/lib/beszel-agent
+      - /mnt/shared/homelab/beszel/beszel_socket:/beszel_socket
       - /var/run/docker.sock:/var/run/docker.sock:ro
     environment:
       LISTEN: /beszel_socket/beszel.sock
