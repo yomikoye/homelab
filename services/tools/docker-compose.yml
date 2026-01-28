@@ -32,6 +32,7 @@ services:
   optionable:
     container_name: optionable
     image: yomikoye/optionable:latest
+    pull_policy: always
     environment:
       - TZ=Europe/Warsaw
       - NODE_ENV=production

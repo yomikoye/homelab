@@ -79,8 +79,8 @@ services:
       - TZ=${TZ}
     ports:
       - 8069:8069        # qBittorrent WebUI
-      - 6881:6881        # qBittorrent
-      - 6881:6881/udp    # qBittorrent
+      - 50123:50123        # qBittorrent
+      - 50123:50123/udp    # qBittorrent
     networks:
       - homelab-network
     labels:

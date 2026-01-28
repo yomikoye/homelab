@@ -207,12 +207,15 @@
             # - title: Audible
             #   url: https://audible.koye.casa
             #   icon: di:audiobookshelf
-            # - title: Books
-            #   url: https://books.koye.casa
-            #   icon: di:calibre
             - title: Beszel
               url: https://monitor.koye.casa
               icon: di:beszel
+            - title: Books
+              url: https://books.koye.casa
+              icon: di:book-lore
+            - title: Bot
+              url: https://bot.koye.casa
+              icon: si:buefy
             - title: Chat
               url: https://chat.koye.casa
               icon: di:open-webui
@@ -231,10 +234,19 @@
             - title: Miner
               url: http://192.168.88.34
               icon: di:bitcoin
+            - title: Optionable
+              url: https://optionable.koye.casa
+              icon: di:elysian
+            - title: PDF
+              url: https://pdf.koye.casa
+              icon: di:bentopdf
+            - title: Pi-hole
+              url: https://pihole.koye.casa/admin
+              icon: di:pi-hole
             - title: Prowlarr
               url: https://prowlarr.koye.casa
               icon: di:prowlarr
-            - title: qbit
+            - title: qBit
               url: https://qbit.koye.casa
               icon: di:qbittorrent
             - title: Radarr
@@ -252,15 +264,6 @@
             - title: TVIEW
               url: https://tradingview.com
               icon: di:trading-view
-            - title: Optionable
-              url: https://optionable.koye.casa
-              icon: di:elysian
-            - title: PDF
-              url: https://pdf.koye.casa
-              icon: di:bentopdf
-            - title: Pi-hole
-              url: https://pihole.koye.casa/admin
-              icon: di:pi-hole
             - title: Traefik
               url: https://traefik.koye.casa
               icon: di:traefik
